@@ -16,10 +16,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #logo-container {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
         }
         #logo {
-            width: 200px; /* Adjust the size as needed */
+            width: 100%;
+            height: 100%;
             animation: flip 3s infinite;
+        }
+        #coming-soon {
+            display: none;
+            font-size: 24px;
+            text-align: center;
         }
         @keyframes flip {
             0% {
@@ -34,8 +50,32 @@
         }
     </style>
 </head>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <body>
-    <img id="logo" src="logo.png" alt="Logo">
+    <div id="logo-container">
+        <img id="logo" src="/logo.png" alt="Logo">
+        <div id="coming-soon">coming soon..</div>
+    </div>
+
+    <script>
+        const logoContainer = document.getElementById('logo-container');
+        const logo = document.getElementById('logo');
+        const comingSoon = document.getElementById('coming-soon');
+
+        logoContainer.addEventListener('click', function() {
+            logo.style.display = 'none';
+            comingSoon.style.display = 'block';
+
+            setTimeout(() => {
+                comingSoon.style.opacity = '0';
+                comingSoon.style.transition = 'opacity 1s';
+
+                setTimeout(() => {
+                    comingSoon.style.display = 'none';
+                    comingSoon.style.opacity = '1';
+                    logo.style.display = 'block';
+                }, 1000);
+            }, 4000);
+        });
+    </script>
 </body>
 </html>
